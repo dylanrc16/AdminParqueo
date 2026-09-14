@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package adminparqueo;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -25,9 +26,35 @@ public class Vehiculo {
         this.descripcion = descripcion;
         this.placa = placa;
         this.movimientos = new Movimiento[100];
+        this.contadorMovimientos = 0;
         
     }
     
+    public void agregarMovimiento(LocalDateTime entrada) {
+        if (contadorMovimientos < movimientos.length) {
+            movimientos[contadorMovimientos] = new Movimiento(entrada);
+            contadorMovimientos++;
+        }
+    }
+
+    public Movimiento getMovimientoActual() {
+        if (contadorMovimientos == 0) {
+            return null;
+        }
+
+        return movimientos[contadorMovimientos - 1];
+    }
+
+    public boolean estaEnParqueo() {
+        Movimiento actual = getMovimientoActual();
+
+        if (actual == null) {
+            return false;
+        }
+
+        return actual.estaActivo();
+    }
+
     
     public String getID(){
         if (BICICLETA.equals(tipo)){
