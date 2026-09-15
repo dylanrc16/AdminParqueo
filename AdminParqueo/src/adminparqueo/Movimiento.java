@@ -15,11 +15,13 @@ public class Movimiento {
 
     private LocalDateTime entrada;
     private LocalDateTime salida;
+    private double horasCobradas;
     private double monto;
 
     public Movimiento(LocalDateTime entrada) {
         this.entrada = entrada;
         this.salida = null;
+        this.horasCobradas = 0;
         this.monto = 0;
     }
 
@@ -31,6 +33,10 @@ public class Movimiento {
         return salida;
     }
 
+    public double getHorasCobradas() {
+        return horasCobradas;
+    }
+
     public double getMonto() {
         return monto;
     }
@@ -40,42 +46,42 @@ public class Movimiento {
     }
 
     public double horasTranscurridasHasta(LocalDateTime momento) {
-        long segundos = Duration.between(entrada, momento).getSeconds();
+        long minutos = Duration.between(entrada, momento).toMinutes();
 
-        if (segundos < 0) {
-            segundos = 0;
+        if (minutos < 0) {
+            minutos = 0;
         }
 
-        return segundos / 3600.0;
+        return minutos / 60.0;
     }
 
-    public double horasCobradasHasta(LocalDateTime momento) {
-        long segundos = Duration.between(entrada, momento).getSeconds();
+    public double calcularHorasCobradas(LocalDateTime momento) {
+        long minutos = Duration.between(entrada, momento).toMinutes();
 
-        if (segundos <= 0) {
+        if (minutos <= 0) {
             return 0;
         }
 
-        int horasCompletas = (int) (segundos / 3600);
-        long segundosSobrantes = segundos % 3600;
+        long horasCompletas = minutos / 60;
+        long minutosSobrantes = minutos % 60;
 
-        if (segundosSobrantes == 0) {
+        if (minutosSobrantes == 0) {
             return horasCompletas;
         }
 
-        if (segundosSobrantes <= 1800) {
+        if (minutosSobrantes <= 30) {
             return horasCompletas + 0.5;
         }
 
-        return horasCompletas + 1.0;
+        return horasCompletas + 1;
     }
 
     public void cerrar(LocalDateTime salida, double tarifaPorHora) {
         this.salida = salida;
-        this.monto = horasCobradasHasta(salida) * tarifaPorHora;
+        this.horasCobradas = calcularHorasCobradas(salida);
+        this.monto = horasCobradas * tarifaPorHora;
     }
 }
-    
     
     
 
