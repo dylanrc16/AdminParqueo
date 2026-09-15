@@ -105,7 +105,7 @@ public class Menu {
 
             case 2:
                 tipo = Vehiculo.GRANDE;
-                cantidadEspacios = leerEntero("¿Cuantos espacios necesita?: ");
+                cantidadEspacios = leerEntero("Cuantos espacios necesita?: ");
                 break;
 
             case 3:
@@ -186,7 +186,7 @@ public class Menu {
         double horas = movimiento.horasTranscurridasHasta(ahora);
         double monto = movimiento.calcularHorasCobradas(ahora) * parqueo.tarifa(vehiculo);
 
-        System.out.println("\n========= VEHÍCULO =========");
+        System.out.println("\n========= VEHICULO =========");
         System.out.println("Tipo: " + vehiculo.getTipo());
         System.out.println("Placa/Descripcion: " + vehiculo.getID());
         System.out.println("Entrada: " + movimiento.getEntrada().format(formato));
@@ -283,7 +283,7 @@ public class Menu {
             return;
         }
 
-        System.out.println("\n========= HISTÓRICO " + placa + " =========");
+        System.out.println("\n========= HISTORICO " + placa + " =========");
 
         for (int i = 0; i < vehiculo.getCantidadMovimientos(); i++) {
 
@@ -321,7 +321,7 @@ public class Menu {
         LocalDate hoy = LocalDate.now();
         double total = 0;
 
-        System.out.println("\n========= CIERRE DEL DÍA =========");
+        System.out.println("\n========= CIERRE DEL DIA =========");
 
         for (int i = 0; i < cantidad; i++) {
 
