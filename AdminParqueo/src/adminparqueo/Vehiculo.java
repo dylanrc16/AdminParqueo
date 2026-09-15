@@ -62,7 +62,7 @@ public class Vehiculo {
         return espaciosActuales;
     }
 
-    public String getIdentificador() {
+    public String getID() {
         if (tipo.equals(BICICLETA)) {
             return descripcion;
         }

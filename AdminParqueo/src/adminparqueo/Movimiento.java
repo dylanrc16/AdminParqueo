@@ -45,8 +45,8 @@ public class Movimiento {
         return salida == null;
     }
 
-    public double horasTranscurridasHasta(LocalDateTime momento) {
-        long minutos = Duration.between(entrada, momento).toMinutes();
+    public double horasTranscurridasHasta(LocalDateTime momentoActual) {
+        long minutos = Duration.between(entrada, momentoActual).toMinutes();
 
         if (minutos < 0) {
             minutos = 0;
@@ -55,8 +55,8 @@ public class Movimiento {
         return minutos / 60.0;
     }
 
-    public double calcularHorasCobradas(LocalDateTime momento) {
-        long minutos = Duration.between(entrada, momento).toMinutes();
+    public double calcularHorasCobradas(LocalDateTime momentoActual) {
+        long minutos = Duration.between(entrada, momentoActual).toMinutes();
 
         if (minutos <= 0) {
             return 0;

@@ -43,7 +43,7 @@ public class Parqueo {
 
         Vehiculo vehiculo;
         if (!tipo.equals(Vehiculo.BICICLETA)) {
-            placa = placa.trim().toUpperCase();
+            placa = placa.trim().toUpperCase(); 
             vehiculo = buscarPorPlaca(placa);
             
             if (vehiculo != null
@@ -208,8 +208,7 @@ public class Parqueo {
         return -1;
     }
 
-    private int buscarContiguos(
-            int cantidad) {
+    private int buscarContiguos(int cantidad) {
 
         int posicion = buscarEnFila(0,9,cantidad );
 
@@ -226,10 +225,7 @@ public class Parqueo {
         return buscarEnFila( 20, 24, cantidad );
     }
 
-    private int buscarEnFila(
-            int inicio,
-            int fin,
-            int cantidad) {
+    private int buscarEnFila(int inicio, int fin, int cantidad) {
 
         for (int i = inicio; i <= fin - cantidad + 1; i++) {
 

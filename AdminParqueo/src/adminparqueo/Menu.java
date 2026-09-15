@@ -33,7 +33,7 @@ public class Menu {
 
         do {
             mostrarMenu();
-            opcion = leerEntero("Seleccione una opción: ");
+            opcion = leerEntero("Seleccione una opcion: ");
 
             switch (opcion) {
                 case 1:
@@ -65,7 +65,7 @@ public class Menu {
                     break;
 
                 default:
-                    System.out.println("Opción inválida.");
+                    System.out.println("Opcion invalida.");
             }
 
         } while (opcion != 7);
@@ -74,12 +74,12 @@ public class Menu {
     private void mostrarMenu() {
 
         System.out.println("\n========= PARQUEO =========");
-        System.out.println("1. Ingresar vehículo");
-        System.out.println("2. Consultar vehículo");
-        System.out.println("3. Salida de vehículo");
+        System.out.println("1. Ingresar vehiculo");
+        System.out.println("2. Consultar vehiculo");
+        System.out.println("3. Salida de vehiculo");
         System.out.println("4. Consultar parqueo");
-        System.out.println("5. Consultar histórico de vehículo");
-        System.out.println("6. Cierre del día");
+        System.out.println("5. Consultar historico de vehiculo");
+        System.out.println("6. Cierre del dia");
         System.out.println("7. Salir");
     }
 
@@ -105,7 +105,7 @@ public class Menu {
 
             case 2:
                 tipo = Vehiculo.GRANDE;
-                cantidadEspacios = leerEntero("¿Cuántos espacios necesita?: ");
+                cantidadEspacios = leerEntero("¿Cuantos espacios necesita?: ");
                 break;
 
             case 3:
@@ -117,12 +117,12 @@ public class Menu {
                 break;
 
             default:
-                System.out.println("Tipo inválido.");
+                System.out.println("Tipo invalido.");
                 return;
         }
 
         if (tipo.equals(Vehiculo.BICICLETA)) {
-            descripcion = leerTexto("Descripción: ");
+            descripcion = leerTexto("Descripcion: ");
         } else {
             placa = leerTexto("Placa: ");
         }
@@ -130,18 +130,18 @@ public class Menu {
         boolean ingreso = parqueo.ingresar(tipo, placa, descripcion, cantidadEspacios);
 
         if (ingreso) {
-            System.out.println("Vehículo ingresado correctamente.");
+            System.out.println("Vehiculo ingresado correctamente.");
         } else {
-            System.out.println("No se pudo ingresar el vehículo.");
+            System.out.println("No se pudo ingresar el vehiculo.");
         }
     }
 
     private void consultarVehiculo() {
 
         System.out.println("\n1. Buscar por placa");
-        System.out.println("2. Buscar bicicleta por descripción");
+        System.out.println("2. Buscar bicicleta por descripcion");
 
-        int opcion = leerEntero("Opción: ");
+        int opcion = leerEntero("Opcion: ");
 
         if (opcion == 1) {
 
@@ -149,14 +149,14 @@ public class Menu {
             Vehiculo vehiculo = parqueo.buscarActivoPorPlaca(placa);
 
             if (vehiculo == null) {
-                System.out.println("No se encontró el vehículo.");
+                System.out.println("No se encontro el vehiculo.");
             } else {
                 mostrarVehiculo(vehiculo);
             }
 
         } else if (opcion == 2) {
 
-            String texto = leerTexto("Descripción a buscar: ");
+            String texto = leerTexto("Descripcion a buscar: ");
             Vehiculo[] bicicletas = parqueo.buscarBicicletas(texto);
 
             boolean encontro = false;
@@ -174,7 +174,7 @@ public class Menu {
             }
 
         } else {
-            System.out.println("Opción inválida.");
+            System.out.println("Opcion invalida.");
         }
     }
 
@@ -188,7 +188,7 @@ public class Menu {
 
         System.out.println("\n========= VEHÍCULO =========");
         System.out.println("Tipo: " + vehiculo.getTipo());
-        System.out.println("Placa/Descripción: " + vehiculo.getIdentificador());
+        System.out.println("Placa/Descripcion: " + vehiculo.getID());
         System.out.println("Entrada: " + movimiento.getEntrada().format(formato));
 
         System.out.printf("Horas en parqueo: %.2f%n", horas);
@@ -198,9 +198,9 @@ public class Menu {
     private void salidaVehiculo() {
 
         System.out.println("\n1. Salida por placa");
-        System.out.println("2. Salida por posición");
+        System.out.println("2. Salida por posicion");
 
-        int opcion = leerEntero("Opción: ");
+        int opcion = leerEntero("Opcion: ");
 
         Vehiculo vehiculo = null;
 
@@ -211,17 +211,17 @@ public class Menu {
 
         } else if (opcion == 2) {
 
-            String posicion = leerTexto("Posición (ejemplo: 5 o M3): ");
+            String posicion = leerTexto("Posicion (ejemplo: 5 o M3): ");
             vehiculo = parqueo.buscarPorPosicion(posicion);
 
         } else {
 
-            System.out.println("Opción inválida.");
+            System.out.println("Opcion invalida.");
             return;
         }
 
         if (vehiculo == null) {
-            System.out.println("Vehículo no encontrado.");
+            System.out.println("Vehiculo no encontrado.");
             return;
         }
 
@@ -230,7 +230,7 @@ public class Menu {
         parqueo.sacar(vehiculo);
 
         System.out.println("\n========= SALIDA =========");
-        System.out.println("Vehículo: " + vehiculo.getIdentificador());
+        System.out.println("Vehiculo: " + vehiculo.getID());
         System.out.println("Entrada: " + movimiento.getEntrada().format(formato));
         System.out.println("Salida: " + movimiento.getSalida().format(formato));
 
@@ -264,7 +264,7 @@ public class Menu {
                 System.out.printf(
                         "%s | %s | Entrada: %s | Horas: %.2f%n",
                         vehiculo.getTipo(),
-                        vehiculo.getIdentificador(),
+                        vehiculo.getID(),
                         movimiento.getEntrada().format(formato),
                         horas
                 );
@@ -294,7 +294,7 @@ public class Menu {
 
             if (movimiento.estaActivo()) {
 
-                System.out.println("Actualmente está en el parqueo.");
+                System.out.println("Actualmente esta en el parqueo.");
 
             } else {
 
@@ -310,7 +310,7 @@ public class Menu {
         Vehiculo[] vehiculos = parqueo.getVehiculos();
         int cantidad = parqueo.getCantidadVehiculos();
 
-        // Primero saca todos los vehículos que todavía están adentro.
+        // Primero saca todos los vehiculos que todavia estan adentro.
         for (int i = 0; i < cantidad; i++) {
 
             if (vehiculos[i].estaEnParqueo()) {
@@ -334,7 +334,7 @@ public class Menu {
                 if (movimiento.getSalida() != null
                         && movimiento.getSalida().toLocalDate().equals(hoy)) {
 
-                    System.out.println("\nVehículo: " + vehiculo.getIdentificador());
+                    System.out.println("\nVehiculo: " + vehiculo.getID());
                     System.out.println("Entrada: " + movimiento.getEntrada().format(formato));
                     System.out.println("Salida: " + movimiento.getSalida().format(formato));
 
@@ -358,7 +358,7 @@ public class Menu {
             try {
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un número válido.");
+                System.out.println("Ingrese un número valido.");
             }
         }
     }
