@@ -8,6 +8,8 @@ package adminparqueo;
  *
  * @author dylnr
  */
+
+// Proyecto realizado por Dylan Rodríguez - Duvan Asenjo
 public class AdminParqueo {
 
     /**
