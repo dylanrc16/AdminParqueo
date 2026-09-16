@@ -278,8 +278,7 @@ public class Parqueo {
 
     return -1;
 }
-    public String nombrePosicion(
-            int indice) {
+    public String nombrePosicion(int indice) {
         if (indice < 25) {
             return String.valueOf(indice + 1 );
         }
